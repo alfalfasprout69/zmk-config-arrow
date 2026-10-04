@@ -33,4 +33,14 @@
             , <&gpio0 4  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* RIGHT = D4 */
             ;
     };
+
+    aliases {
+        led-red = &led0;
+        led-green = &led1;
+        led-blue = &led2;
+    };
+
+    leds {
+        status = "okay";
+    };
 };
