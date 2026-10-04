@@ -1,4 +1,4 @@
 ---
 include:
   - board: seeeduino_xiao_ble
-    shield: arrow_pad rgbled_adapter
+    shield: arrow_pad
