@@ -3,6 +3,24 @@
 #include <dt-bindings/zmk/bt.h>
 
 / {
+    macros {
+        clear_all_bonds: clear_all_bonds {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&bt BT_CLR_ALL>;
+        };
+    };
+
+    behaviors {
+        hold_reset: hold_reset {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <10000>;
+            bindings = <&clear_all_bonds>, <&none>;
+        };
+    };
+
     combos {
         compatible = "zmk,combos";
 
@@ -12,21 +30,24 @@
             layers = <0>;
             bindings = <&mo 1>;
         };
+
+        combo_reset {
+            timeout-ms = <50>;
+            key-positions = <0 2>;
+            layers = <0>;
+            bindings = <&hold_reset 0 0>;
+        };
     };
 
     keymap {
         compatible = "zmk,keymap";
 
         default_layer {
-            bindings = <
-                &kp UP  &kp LEFT  &kp DOWN  &kp RIGHT
-            >;
+            bindings = <&kp UP &kp LEFT &kp DOWN &kp RIGHT>;
         };
 
         bluetooth_layer {
-            bindings = <
-                &bt BT_NXT  &none  &bt BT_PRV  &none
-            >;
+            bindings = <&bt BT_NXT &none &bt BT_PRV &none>;
         };
     };
 };
